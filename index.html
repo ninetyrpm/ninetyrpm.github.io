@@ -2,32 +2,32 @@
 <html>
 <head>
   <title>Map with Marker</title>
+
   <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV7OJm4ET94lvWUd9iA_0IFHrNrpxd4gQ&callback=initMap">
   </script>
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+   crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
 </head>
+
 <body>
   <div id="map" style="height: 400px; width: 100%;"></div>
-
   <script>
-    // Replace 'YOUR_API_KEY' with your actual Google Maps API key
-    function initMap() {
-      // Define the map center
-      const coord = { lat: 38.25234978640053, lng: -85.7239865963528 };  // Coordinates for Headliners
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    
 
-      // Create the map object
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: coord
-      });
 
-      // Create a marker and place it on the map
-      const marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-        title: 'Headliners'
-      });
-    }
   </script>
 </body>
 </html>
