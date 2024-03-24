@@ -13,19 +13,19 @@
     // Replace 'YOUR_API_KEY' with your actual Google Maps API key
     function initMap() {
       // Define the map center
-      const uluru = { lat: 38.252727, lng: -85.759400 };  // Coordinates for 222 Saunders Ave, Louisville KY
+      const coord = { lat: 38.25234978640053, lng: -85.7239865963528 };  // Coordinates for Headliners
 
       // Create the map object
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
-        center: uluru
+        center: coord
       });
 
       // Create a marker and place it on the map
       const marker = new google.maps.Marker({
         position: uluru,
         map: map,
-        title: '222 Saunders Ave, Louisville KY'
+        title: 'Headliners'
       });
     }
   </script>
