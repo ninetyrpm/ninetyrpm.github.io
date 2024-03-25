@@ -31,11 +31,19 @@
     <div id="sidebar" class="leaflet-sidebar collapsed"></div>
     <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
+
+    var osmAttribution = 
+        'Map data &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+    var leafletRadarAttribution =
+        '<a href="https://github.com/rwev/leaflet-radar">Radar</a>';
+        
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: [
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        '<a href="https://github.com/rwev/leaflet-radar">Radar</a>']
+        osmAttribution,
+        leafletRadarAttribution
+    ].join(" | ")
     }).addTo(map);
 
     L.control.radar({}).addTo(map);
