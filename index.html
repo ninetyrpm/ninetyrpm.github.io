@@ -46,7 +46,7 @@
                 const lng = location.Long;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
-                marker.bindPopup('<b>${location.Location}</b>');
+                marker.bindPopup(`<b>${location.Location}</b>`);
             }
         }
     });
