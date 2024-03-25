@@ -53,7 +53,7 @@
                 const lng = location.Long;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
-                marker.bindPopup(`<b>${location.TagNum},": ",${location.Location}</b>`);
+                marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                 // // Add click event listener to the marker
                 // marker.on('click',function(){
                 //     sidebar.open('sidebar');    // Open the sidebar when the marker is clicked
