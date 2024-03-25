@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BCB Bike Tags</title>
-
-  <script src="papaparse.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/leaflet-sidebar-v2@2.0.1/dist/leaflet-sidebar-v2.min.js"></script>
-
-
-  <!-- <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV7OJm4ET94lvWUd9iA_0IFHrNrpxd4gQ&callback=initMap">
-  </script> -->
-
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-   crossorigin=""/>
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <title>BCB Bike Tags</title>
+    <!-- Script for parsing csv to JSON -->
+    <script src="papaparse.min.js"></script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+    <!-- Script for Leaflet, make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <!-- Leaflet sidebar CSS -->
+    <link rel="stylesheet" href="../css/leaflet-sidebar.css">
+    <!-- Script for Leaflet sidebar -->
+    <script src="leaflet-sidebar.min.js"></script>
 </head>
 
 <body>
@@ -52,13 +49,13 @@
                 const lng = location.Long;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
-                marker.bindPopup(`<b>${location.Location}</b>`);
-                marker.on('click', function(e) {
-                    // Update sidebar content based on marker data (optional)
-                    updateSidebarContent(location);
-                    // Open the sidebar
-                    sidebar.open('marker-sidebar');
-                })
+                // marker.bindPopup(`<b>${location.Location}</b>`);
+                // marker.on('click', function(e) {
+                //     // Update sidebar content based on marker data (optional)
+                //     updateSidebarContent(location);
+                //     // Open the sidebar
+                //     sidebar.open('marker-sidebar');
+                // })
             }
         }
     });
