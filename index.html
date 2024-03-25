@@ -4,6 +4,8 @@
   <title>BCB Bike Tags</title>
 
   <script src="papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-sidebar-v2@2.0.1/dist/leaflet-sidebar-v2.min.js"></script>
+
 
   <!-- <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV7OJm4ET94lvWUd9iA_0IFHrNrpxd4gQ&callback=initMap">
@@ -21,12 +23,16 @@
 
 <body>
   <div id="map" style="height: 100vh; width: 100%;"></div>
+  <div id="marker-sidebar" class="leaflet-sidebar collapsed"></div>
   <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    var sidebar = L.control.sidebar('marker-sidebar');
+    sidebar.addTo(map);
 
     Papa.parse("https://raw.githubusercontent.com/ninetyrpm/ninetyrpm.github.io/main/Tags.csv", {
         download: true,
@@ -47,6 +53,12 @@
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.bindPopup(`<b>${location.Location}</b>`);
+                marker.on('click', function(e) {
+                    // Update sidebar content based on marker data (optional)
+                    updateSidebarContent(location);
+                    // Open the sidebar
+                    sidebar.open('marker-sidebar');
+                })
             }
         }
     });
