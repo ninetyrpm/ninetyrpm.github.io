@@ -30,7 +30,7 @@
 
     Papa.parse("https://raw.githubusercontent.com/ninetyrpm/ninetyrpm.github.io/main/Tags.csv", {
         delimiter: ",",      // use comma as delimiter
-        
+        download: true,
         header: true,           // csv contains a header row
         complete: function(results) {
             console.log("Papa Parse completed!")
