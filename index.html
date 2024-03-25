@@ -22,9 +22,9 @@
 <body>
   <div id="map" style="height: 400px; width: 100%;"></div>
   <script>
-    var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 13);
+    var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 10);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 18,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
@@ -37,6 +37,7 @@
                 const coordiantes = location.coordiantes.split(',');
                 const lat = parseFloat(coordiantes[0]);
                 const lng = parseFloat(coordiantes[1]);
+                console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.bindPopup('<b>${location["Tag Location"]}</b>');
             }
