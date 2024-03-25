@@ -20,7 +20,7 @@
 
 <body>
   <div id="map" style="height: 100vh; width: 100%;"></div>
-  <div id="marker-sidebar" class="leaflet-sidebar collapsed"></div>
+  <div id="sidebar" class="leaflet-sidebar collapsed"></div>
   <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,8 +28,12 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var sidebar = L.control.sidebar('marker-sidebar');
-    sidebar.addTo(map);
+    var sidebar = L.control.sidebar({
+        autopan: true,
+        closeButton: true,
+        container: 'sidebar',
+        position: 'left',
+    }).addTo(map);
 
     Papa.parse("https://raw.githubusercontent.com/ninetyrpm/ninetyrpm.github.io/main/Tags.csv", {
         download: true,
@@ -49,13 +53,6 @@
                 const lng = location.Long;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
-                // marker.bindPopup(`<b>${location.Location}</b>`);
-                // marker.on('click', function(e) {
-                //     // Update sidebar content based on marker data (optional)
-                //     updateSidebarContent(location);
-                //     // Open the sidebar
-                //     sidebar.open('marker-sidebar');
-                // })
             }
         }
     });
