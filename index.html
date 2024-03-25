@@ -28,24 +28,25 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    Papa.parse("tags.csv", {
+    Papa.parse("Tags.csv", {
         delimiter: ",",      // use comma as delimiter
         header: true,       // csv contains a header row
         complete: function(results) {
+            if (results.errors.length >0){
+                console.error("Error parsing CSV:", results.errors);
+                return;     // Exit the function if errors occurred
+            }
             const jsonData = results.data;      // array containing parsed data objects
             for (const location of jsonData) {
-                const coordiantes = location.coordiantes.split(',');
-                const lat = parseFloat(coordiantes[0]);
-                const lng = parseFloat(coordiantes[1]);
+                const coordinates = location.coordinates.split(',');
+                const lat = parseFloat(coordinates[0]);
+                const lng = parseFloat(coordinates[1]);
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.bindPopup('<b>${location["Tag Location"]}</b>');
             }
         }
     });
-    
-
-
   </script>
 </body>
 </html>
