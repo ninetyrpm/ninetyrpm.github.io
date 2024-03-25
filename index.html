@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <div id="map" style="height: 400px; width: 100%;"></div>
+  <div id="map" style="height: 100vh; width: 100%;"></div>
   <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 10);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -29,8 +29,8 @@
     }).addTo(map);
 
     Papa.parse("https://raw.githubusercontent.com/ninetyrpm/ninetyrpm.github.io/main/Tags.csv", {
-        delimiter: ",",      // use comma as delimiter
         download: true,
+        skipEmptyLines: true,
         header: true,           // csv contains a header row
         complete: function(results) {
             console.log("Papa Parse completed!")
