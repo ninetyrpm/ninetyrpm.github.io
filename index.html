@@ -30,7 +30,8 @@
 
     Papa.parse("Tags.csv", {
         delimiter: ",",      // use comma as delimiter
-        header: true,       // csv contains a header row
+        
+        header: true,           // csv contains a header row
         complete: function(results) {
             if (results.errors.length >0){
                 console.error("Error parsing CSV:", results.errors);
@@ -38,12 +39,12 @@
             }
             const jsonData = results.data;      // array containing parsed data objects
             for (const location of jsonData) {
-                const coordinates = location.coordinates.split(',');
-                const lat = parseFloat(coordinates[0]);
-                const lng = parseFloat(coordinates[1]);
+                const name = location.Location;
+                const lat = location.Lat;
+                const lng = location.Long;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
-                marker.bindPopup('<b>${location["Tag Location"]}</b>');
+                marker.bindPopup('<b>${location.Location}</b>');
             }
         }
     });
