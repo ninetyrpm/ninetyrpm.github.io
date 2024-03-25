@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Map with Marker</title>
+  <title>BCB Bike Tags</title>
 
-  <script async defer
+  <script src="papaparse.min.js"></script>
+
+  <!-- <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV7OJm4ET94lvWUd9iA_0IFHrNrpxd4gQ&callback=initMap">
-  </script>
+  </script> -->
 
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -20,11 +22,26 @@
 <body>
   <div id="map" style="height: 400px; width: 100%;"></div>
   <script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([0, 0], 13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    Papa.parse("tags.csv", {
+        delimiter: ",",      // use comma as delimiter
+        header: true,       // csv contains a header row
+        complete: function(results) {
+            const jsonData = results.data;      // array containing parsed data objects
+            for (const location of jsonData) {
+                const coordiantes = location.coordiantes.split(',');
+                const lat = parseFloat(coordiantes[0]);
+                const lng = parseFloat(coordiantes[1]);
+                const marker = L.marker([lat,lng]).addTo(map);
+                marker.bindPopup('<b>${location["Tag Location"]}</b>');
+            }
+        }
+    }
     
 
 
