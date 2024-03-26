@@ -50,10 +50,19 @@
     <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
 
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: [
+        osmAttribution,
+        leafletRadarAttribution
+    ].join(" | ")
+    }).addTo(map);
+
     var sidebar = L.control.sidebar({
+        container: 'sidebar',
         autopan: true,
         closeButton: true,
-        collapsed: true,
+        collapsed: false,
         position: 'left',
     }).addTo(map);
 
@@ -70,14 +79,6 @@
 
     var leafletRadarAttribution =
         '<a href="https://github.com/rwev/leaflet-radar">Radar</a>';
-        
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: [
-        osmAttribution,
-        leafletRadarAttribution
-    ].join(" | ")
-    }).addTo(map);
 
     L.control.radar({}).addTo(map);
 
