@@ -28,8 +28,11 @@
     <!-- <script src="leaflet-sidebar.js"></script> -->
 
     <!-- CDN for MapBox GL JS & CSS -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.css" crossorigin="">
+    <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
 
 </head>
 
@@ -63,7 +66,19 @@
     });
     map.addControl(sidebar)
 
-
+   // PinSearch component
+    var searchBar = L.control.pinSearch({
+        position: 'topright',
+        placeholder: 'Search...',
+        buttonText: 'Search',
+        onSearch: function(query) {
+            console.log('Search query:', query);
+            // Handle the search query here
+        },
+        searchBarWidth: '200px',
+        searchBarHeight: '30px',
+        maxSearchResults: 3
+    }).addTo(map);
 
     // var panelContent = {
     //     id: 'taginfo',                     // UID, used to access the panel
