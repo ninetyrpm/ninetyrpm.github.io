@@ -66,20 +66,6 @@
     });
     map.addControl(sidebar)
 
-   // PinSearch component
-    var searchBar = L.control.pinSearch({
-        position: 'topright',
-        placeholder: 'Search...',
-        buttonText: 'Search',
-        onSearch: function(query) {
-            console.log('Search query:', query);
-            // Handle the search query here
-        },
-        searchBarWidth: '200px',
-        searchBarHeight: '30px',
-        maxSearchResults: 3
-    }).addTo(map);
-
     // var panelContent = {
     //     id: 'taginfo',                     // UID, used to access the panel
     //     tab: '<i class="test panel"></i>',  // content can be passed as HTML string,
@@ -131,6 +117,21 @@
                 })
             }
         }
+            
+   // PinSearch component
+    var searchBar = L.control.pinSearch({
+        position: 'topright',
+        placeholder: 'Search...',
+        buttonText: 'Search',
+        onSearch: function(query) {
+            console.log('Search query:', query);
+            // Handle the search query here
+        },
+        searchBarWidth: '200px',
+        searchBarHeight: '30px',
+        maxSearchResults: 3
+    }).addTo(map);
+        
     });
   </script>
 </body>
