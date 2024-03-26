@@ -105,7 +105,10 @@
                 marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                 marker.on('mouseover',function(e){
                     this.openPopup();
-                })
+                });
+                marker.on('mouseout',function(e){
+                    this.closePopup();
+                });
                 marker.on('click',function(e){
                     document.getElementById('tag-number').textContent = tagNumber;
                     document.getElementById('location-name').textContent = name;
