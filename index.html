@@ -28,11 +28,23 @@
     <!-- CDN for MapBox GL JS & CSS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
 </head>
 
 <body>
     <div id="map" style="height: 100vh; width: 100%;"></div>
-    <div id="sidebar" class="leaflet-sidebar collapsed"></div>
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+        <h2>Tag Details</h2>
+        <p id="tag-number"></p>
+        <p id="location-name"></p>
+        <img id="mystery-photo"
+        src="https://biketagbcb.s3.us-east-2.amazonaws.com/no%20photo.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJGMEQCIE0A1OuCGY%2BRg6uhsY0M9ieiW2liE%2F%2Fm4xzs4UdhUDvCAiBvv8ohQO%2BkYeArufHRb1eh1hxMgc0ZQ6d5hndTtyzzpSrtAgia%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDg5MTM3Njk4NDc4NyIM6CENxbQ6W5s%2FSOCbKsECQM3vap9U45WHFrKSxOdJumP3wyECW5INC3I4lfFvQaqLFovvnH90u9rkh7cx4Lr5hMNjpOWyyvdWU20MnMSwNr1z9X8dLIsJg4OYS0rcXwGIaLoE9WD3LyfwmEbHvB%2Fa4%2FlfzKhGfmU6flJNy9k727K3VAQ6Xl%2BM1K8d9fzitdISyvAr%2FpWkrocC6ZgrWw0Xuft%2BY9N9ZZsywnY%2FEG9JLCAVBYri5vjTOvzkl54Lae5tUEI%2BrDpUf7oM%2FUpjons2mNB6uNVJS%2FgcJebDbBPKHjjXL8JGd65u3Hd%2FiuAbodjnlqlzwzTGEkujn%2FPU5Wm1o%2BLiaNCA%2F4fnQw85Mo68kFFKsb6B2poEsHf4ImL5SQvSw8IWl1d%2BMIUJR%2FIZ2U6k3grfr%2F2Ml9gq4tGSxd%2F54CjAUQYVcFH2Ncu1IoyzC3qtMI6%2BiLAGOrQCAeQ20BPFsXlIwirQGdQtmsdTdIZ3rj9BrgSdsReo4ng%2FO4VPnO9ajjo3AeYDUl8f84o7twOHRDsvQe799mCLSPAkCAao4AHOVJMjD4ZFbFYUeaH5dQ7gUlDPdKF62rtniqd3djxRlhrOD3DbKp1PjwtEJLHl%2F5DDc60Hw6ssrMLbwg4CSDdB%2Fer%2Flo8qf5vrN5KKg8v2BixbqqwxgpEiOPNgodCmmSz1SJDPhIbGbVMg%2FZ%2Fkq1HtHu5Kc5e4KWmT%2BNRMADQpQsbzvCuiDrFTbxQG5BzbW3%2F06eo%2BR8Y9EevxmTuw2ik9yTUMNt4IR%2F%2BHBcPIKcVkW5JiCitoP%2FvLNYET7I2cM%2BAviYbo9%2F7AydLYtLxQkpo8oFXcm%2FeWCPjI8GQ2WjJSEM2jcUscClkRk%2BbnhtM%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240326T021743Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIA47CRVMLJSGWHUWO7%2F20240326%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=6f6e5daa7403b3532d28548503d0fe871cbdc6f01a7a397ef347ef5b5e5a4b45"
+        alt="Mystery Photo">
+        <img id="claim-photo"
+        src="https://biketagbcb.s3.us-east-2.amazonaws.com/no%20photo.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJGMEQCIE0A1OuCGY%2BRg6uhsY0M9ieiW2liE%2F%2Fm4xzs4UdhUDvCAiBvv8ohQO%2BkYeArufHRb1eh1hxMgc0ZQ6d5hndTtyzzpSrtAgia%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDg5MTM3Njk4NDc4NyIM6CENxbQ6W5s%2FSOCbKsECQM3vap9U45WHFrKSxOdJumP3wyECW5INC3I4lfFvQaqLFovvnH90u9rkh7cx4Lr5hMNjpOWyyvdWU20MnMSwNr1z9X8dLIsJg4OYS0rcXwGIaLoE9WD3LyfwmEbHvB%2Fa4%2FlfzKhGfmU6flJNy9k727K3VAQ6Xl%2BM1K8d9fzitdISyvAr%2FpWkrocC6ZgrWw0Xuft%2BY9N9ZZsywnY%2FEG9JLCAVBYri5vjTOvzkl54Lae5tUEI%2BrDpUf7oM%2FUpjons2mNB6uNVJS%2FgcJebDbBPKHjjXL8JGd65u3Hd%2FiuAbodjnlqlzwzTGEkujn%2FPU5Wm1o%2BLiaNCA%2F4fnQw85Mo68kFFKsb6B2poEsHf4ImL5SQvSw8IWl1d%2BMIUJR%2FIZ2U6k3grfr%2F2Ml9gq4tGSxd%2F54CjAUQYVcFH2Ncu1IoyzC3qtMI6%2BiLAGOrQCAeQ20BPFsXlIwirQGdQtmsdTdIZ3rj9BrgSdsReo4ng%2FO4VPnO9ajjo3AeYDUl8f84o7twOHRDsvQe799mCLSPAkCAao4AHOVJMjD4ZFbFYUeaH5dQ7gUlDPdKF62rtniqd3djxRlhrOD3DbKp1PjwtEJLHl%2F5DDc60Hw6ssrMLbwg4CSDdB%2Fer%2Flo8qf5vrN5KKg8v2BixbqqwxgpEiOPNgodCmmSz1SJDPhIbGbVMg%2FZ%2Fkq1HtHu5Kc5e4KWmT%2BNRMADQpQsbzvCuiDrFTbxQG5BzbW3%2F06eo%2BR8Y9EevxmTuw2ik9yTUMNt4IR%2F%2BHBcPIKcVkW5JiCitoP%2FvLNYET7I2cM%2BAviYbo9%2F7AydLYtLxQkpo8oFXcm%2FeWCPjI8GQ2WjJSEM2jcUscClkRk%2BbnhtM%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240326T021743Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIA47CRVMLJSGWHUWO7%2F20240326%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=6f6e5daa7403b3532d28548503d0fe871cbdc6f01a7a397ef347ef5b5e5a4b45"
+        alt="Claim Photo">
+        
+    </div>
     <script>
     var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
 
@@ -81,9 +93,11 @@
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
-                // // Add click event listener to the marker
-                // marker.on('click',function(){
-                //     sidebar.open('sidebar');    // Open the sidebar when the marker is clicked
+                // Add click event listener to the marker
+                marker.on('click',function(e){
+                    document.getElementById('tag-number').textContent = tagNumber;
+                    document.getElementById('location-name').textContent = name;
+                    sidebar.open('sidebar');
                 // })
             }
         }
