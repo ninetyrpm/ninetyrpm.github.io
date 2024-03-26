@@ -110,6 +110,7 @@
                     this.closePopup();
                 });
                 marker.on('click',function(e){
+                    this.openPopup();
                     document.getElementById('tag-number').textContent = tagNumber;
                     document.getElementById('location-name').textContent = name;
                     sidebar.show();
