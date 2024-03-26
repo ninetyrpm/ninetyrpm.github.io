@@ -21,10 +21,11 @@
     <script src="leaflet-radar.js"></script>
     
     <!-- Leaflet sidebar CSS -->
-    <link rel="stylesheet" href="leaflet-sidebar.css">
+    <link rel="stylesheet" href="L.Control.Sidebar.css">
+    <!-- <link rel="stylesheet" href="leaflet-sidebar.css"> -->
     <!-- Script for Leaflet sidebar -->
-    <script src="leaflet-sidebar.js"></script>
-
+    <script src="L.Control.Sidebar.js"></script>
+    <!-- <script src="leaflet-sidebar.js"></script> -->
 
     <!-- CDN for MapBox GL JS & CSS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
@@ -58,13 +59,12 @@
     ].join(" | ")
     }).addTo(map);
 
-    var sidebar = L.control.sidebar({
-        container: 'sidebar',
-        autopan: true,
-        closeButton: true,
-        collapsed: false,
+    var sidebar = L.control.sidebar('sidebar', {
         position: 'left',
-    }).addTo(map);
+    });
+    map.addControl(sidebar)
+
+
 
     // var panelContent = {
     //     id: 'taginfo',                     // UID, used to access the panel
@@ -108,7 +108,7 @@
                 marker.on('click',function(e){
                     document.getElementById('tag-number').textContent = tagNumber;
                     document.getElementById('location-name').textContent = name;
-                    sidebar.open();
+                    sidebar.show();
                 })
             }
         }
