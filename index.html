@@ -24,6 +24,10 @@
     
     <!-- Script for Leaflet sidebar -->
     <script src="leaflet-sidebar.min.js"></script>
+
+    <!-- CDN for MapBox GL JS & CSS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -68,9 +72,12 @@
             console.log(results.data)
             const jsonData = results.data;      // array containing parsed data objects
             for (const location of jsonData) {
+                const tagNumber = location.TagNum;
                 const name = location.Location;
                 const lat = location.Lat;
                 const lng = location.Long;
+                const tagPhotoURL = location.tagURL;
+                const claimPhotoURL = location.claimURL;
                 console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
