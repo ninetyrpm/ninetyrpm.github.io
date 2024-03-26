@@ -117,8 +117,9 @@
                 const lng = location.Long;
                 const tagPhotoURL = location.tagURL;
                 const claimPhotoURL = location.claimURL;
-                console.log(lat, ",", lng)
+                // console.log(lat, ",", lng)
                 const marker = L.marker([lat,lng], {title: location.Location}).addTo(map);
+                console.log(marker);
                 marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                 marker.on('mouseover',function(e){
                     this.openPopup();
