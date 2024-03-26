@@ -48,20 +48,15 @@
     </div>
 
     <script>
-    mapbpxgl.accessToken = 'pk.eyJ1IjoiOTBycG0iLCJhIjoiY2x1N2xuYzF1MDdsbDJrb2RsM2k5ZzRkaiJ9.qUBI39qm66jrQ7jJd5dyTw';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbpxL//styles/mapbox/streets-v11'
-    })
-    // var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
+    var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
 
-    // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     maxZoom: 18,
-    //     attribution: [
-    //         osmAttribution,
-    //         leafletRadarAttribution
-    //     ].join(" | ")
-    // }).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: [
+            osmAttribution,
+            leafletRadarAttribution
+        ].join(" | ")
+    }).addTo(map);
 
     var sidebar = L.control.sidebar('sidebar', {
         position: 'left',
