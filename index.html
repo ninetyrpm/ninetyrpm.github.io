@@ -34,6 +34,10 @@
     <!--   CDN for leaflet pinSearch   -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.css" crossorigin="">
 
+    <!--   CDN for Leaflet.markercluster   -->
+    <link rel="stylesheet" href="../dist/MarkerCluster.Default.css>
+    <script src='../dist/leaflet.marker.js'></script>
+
 </head>
 
 <body>
@@ -93,6 +97,9 @@
             maxSearchResults: 3
         }).addTo(map);
 
+        // Creating marker clusters
+        var markers = L.markersClusterGroup();
+
         // Adding the radar layer to the map
         L.control.radar({}).addTo(map);
 
@@ -126,7 +133,7 @@
                     const tagPhotoURL = location.tagURL;
                     const claimPhotoURL = location.claimURL;
                     // console.log(lat, ",", lng)
-                    const marker = L.marker([lat,lng], {title: location.Location}).addTo(map);
+                    var marker = L.marker([lat,lng], {title: location.Location}).addTo(map);
                     console.log(marker);
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     marker.on('mouseover',function(e){
@@ -142,6 +149,7 @@
                         document.getElementById('claim-date').textContent = clmDt;
                         sidebar.show();
                     })
+                    map.addLayer(markers);
                 }
             }
         });
