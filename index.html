@@ -136,7 +136,7 @@
                     const claimPhotoURL = location.claimURL;
                     // console.log(lat, ",", lng)
                     var marker = L.marker([lat,lng], {title: location.Location});
-                    // marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
+                    marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
                     marker.on('mouseover',function(e){
                         this.openPopup();
@@ -151,6 +151,7 @@
                         document.getElementById('claim-date').textContent = clmDt;
                         sidebar.show();
                     })
+                    map.addLayer(markers);
                 }
             }
         });
