@@ -100,7 +100,7 @@
         }).addTo(map);
 
         // Creating marker clusters
-        // var markers = L.markersClusterGroup();
+        var markers = L.markersClusterGroup();
 
         // Adding the radar layer to the map
         L.control.radar({}).addTo(map);
@@ -151,7 +151,7 @@
                         document.getElementById('claim-date').textContent = clmDt;
                         sidebar.show();
                     })
-                    // map.addLayer(markers);
+                    map.addLayer(markers);
                 }
             }
         });
