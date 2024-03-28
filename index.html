@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="MarkerCluster.Default.css">
     <script src="leaflet.markercluster-src.js"></script>
 
+    <img src='https://ibb.co/K2kPt04>
+
 </head>
 
 <body>
@@ -63,6 +65,13 @@
     <script>
         // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
+
+        // Creating the image overlay
+        var imageURL = 'https://ibb.co/K2kPt04';
+        var errorOverlayUrl = 'https://cdn-icons-png.flaticon.com/512/110/110686.png';
+        var altText = 'BCB Bike Tag Project';
+        var latLngBounds = L.latLngBounds([[40.799311, -74.118464], [40.68202047785919, -74.33]]);
+        var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, options);
 
         // Defining attributions
         var osmAttribution = 
