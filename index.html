@@ -38,9 +38,21 @@
     <link rel="stylesheet" href="MarkerCluster.css">
     <link rel="stylesheet" href="MarkerCluster.Default.css">
     <script src="leaflet.markercluster-src.js"></script>
+
+    <style>
+        #headerImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* To ensure the image is on top of the map */
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 
 <body> 
+    <img id="headerImage" src="https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png" alt="BCB Bike Tags">
     <div id="map" style="height: 100vh; width: 100%;"></div>
     
     <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
@@ -60,14 +72,14 @@
     </div>
 
     <script>
-            // Creating the leaflet map, with coordinates of center of view and zoom level
+        // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
         
-        // Creating the image header
-        var headerImageBounds = [[38.20, -85.80], [38.30, -85.70]];
-        var headerImage = L.imageOverlay('https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png', headerImageBounds);
+        // // Creating the image header
+        // var headerImageBounds = [[38.20, -85.80], [38.30, -85.70]];
+        // var headerImage = L.imageOverlay('https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png', headerImageBounds);
         
-        headerImage.addTo(map);
+        // headerImage.addTo(map);
         
         // Defining attributions
         var osmAttribution = 
