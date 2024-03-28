@@ -60,16 +60,18 @@
     </div>
 
     <script>
+            // Creating the leaflet map, with coordinates of center of view and zoom level
+        var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
+        
         // Creating the image header
         var headerImage = L.tileLayer('', {
             url: "https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png",
             opacity: 1.0,
             zIndex: 999
         });
-        
-        // Creating the leaflet map, with coordinates of center of view and zoom level
-        var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
 
+        map.addLayer(headerImage);
+        
         // Defining attributions
         var osmAttribution = 
             'Map data &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> Contributors';
