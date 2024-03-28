@@ -64,12 +64,12 @@
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 12);
         
         // Creating the image header
-        L.tileLayer('https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png', {
+        var headerIMage = L.tileLayer('https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png', {
             opacity: 1.0,
             zIndex: 999
-        }).addTo(map);
-
-        map.addLayer(headerImage);
+        });
+        
+        headImage.addTo(map);
         
         // Defining attributions
         var osmAttribution = 
