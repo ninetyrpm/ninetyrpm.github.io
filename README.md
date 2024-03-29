@@ -8,6 +8,7 @@
    - Retrieve photos from AWS bucket
 3. Add BCB overlay
 4. Investigate other map tile styles
+   - Consider opencyclemaps or other useful layers for cycling
 5. Fix search bar functionality
 6. Add geometry layer to show game boundaries
 7. Consider adding Lojic datasets as layers
