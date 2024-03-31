@@ -79,11 +79,21 @@
         // Establishing AWS for retrieving bike tag photos
         const AWS = window.AWS; // Access the AWS object in the browser
 
-        // Configure AWS credentials (access key and secret key) - (Server-side recommended)
+        // Function to retrieve credentials from environment variables
+        function getAwsCredentials() {
+            const accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+            const secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;       
+            if (!accessKeyId || !secretAccessKey) {
+                throw new Error("Missing AWS credentials in environment variables");
+            } 
+            return { accessKeyId, secretAccessKey };
+        }
+
+        // Configure AWS credentials with retrieved credentials
+        const credentials = getAwsCredentials();
         AWS.config.update({
              region: 'us-east-2', // Replace with your bucket's region
-             accessKeyId: 'YOUR_ACCESS_KEY_ID',
-             secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+             credentials: credentials
         });
         
         // function for retrieving presigned URLs
