@@ -1,4 +1,4 @@
-const imagekit = require('imagekit');
+var imagekit = require('imagekit');
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
@@ -10,15 +10,15 @@ imagekit.config({
 });
 
 // Default Export
-export default async function handler(req, res) {
+export default async function handler(req, res, imagePath) {
   // Rest of your function logic using imagekit with retrieved credentials
-  const path = "/default-image.jpg";
+  const path = imagePath;
   const transformation = [{ height: 300, width: 400 }];
   const signed = true;
   const expireSeconds = 300;
 
   try {
-    const imageURL = imagekit.url({ path, transformation, signed, expireSeconds });
+    var imageURL = imagekit.url({ path, transformation, signed, expireSeconds });
     res.status(200).json({ imageURL });
   } catch (error) {
     console.error(error);
