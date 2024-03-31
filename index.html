@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="MarkerCluster.Default.css">
     <script src="leaflet.markercluster-src.js"></script>
 
+    <!-- CDN for AWS -->
+    <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script>
+
+
     <style>
         #headerImage {
             position: absolute;
@@ -74,7 +78,7 @@
     <script>
 
         // Establishing AWS for retrieving bike tag photos
-        const AWS = require('aws-sdk');
+        const AWS = window.AWS; // Access the AWS object in the browser
 
         // Configure AWS credentials (access key and secret key)
         AWS.config.update({
