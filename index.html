@@ -40,7 +40,10 @@
     <script src="leaflet.markercluster-src.js"></script>
 
     <!-- CDN for AWS -->
-    <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
+        integrity="sha512-yC0GYHCRUEkpVrS/HRpJc2vi6sNFExGuoJkRQJHH9xJnaBrDcD+fyMNRPsdeBBpR+sxcd67XMYiigF79kVW5AQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script> -->
 
 
     <style>
@@ -80,7 +83,6 @@
         // Establishing AWS for retrieving bike tag photos
         const AWS = window.AWS; // Access the AWS object in the browser
 
-        // Configure AWS credentials (access key and secret key)
         // Configure AWS credentials (access key and secret key) - (Server-side recommended)
         AWS.config.update({
              region: 'us-east-2', // Replace with your bucket's region
