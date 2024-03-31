@@ -1,0 +1,14 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "**Features to be added:**\r 1. Customize Marker Icons\r    - Generate bicycle icon\r    - Generate shadow icon\r 2. Implement Info Sidebar\r    - Establish photo naming convention\r    - Upload photos to AWS\r    - Retrieve photos from AWS bucket\r 3. Add BCB overlay\r 4. Investigate other map tile styles\r    - Consider opencyclemaps or other useful layers for cycling\r 5. Fix search bar functionality\r 6. Add geometry layer to show game boundaries\r 7. Consider adding Lojic datasets as layers\r 8. Consider adding GPS request to display user's location\r 9. Implement tag system to categorize markers\r 10. Implement list of markers/tags",
+  "main": "L.Control.Sidebar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "imagekit": "^5.0.0"
+  }
+}
