@@ -13,7 +13,7 @@ imagekit.config({
 export default async function handler(req, res, imagePath) {
   // Rest of your function logic using imagekit with retrieved credentials
   const path = imagePath;
-  const transformation = [{ height: 300, width: 400 }];
+  const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
   const expireSeconds = 300;
 
