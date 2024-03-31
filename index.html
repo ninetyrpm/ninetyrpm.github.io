@@ -39,11 +39,6 @@
     <link rel="stylesheet" href="MarkerCluster.Default.css">
     <script src="leaflet.markercluster-src.js"></script>
 
-    <!-- CDN for AWS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
-        integrity="sha512-yC0GYHCRUEkpVrS/HRpJc2vi6sNFExGuoJkRQJHH9xJnaBrDcD+fyMNRPsdeBBpR+sxcd67XMYiigF79kVW5AQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script> -->
 
 
     <style>
@@ -75,21 +70,6 @@
     </div>
 
     <script>
-        // Retrieving AWS credentials
-        const region = window.AWS_REGION;
-        const accessKeyId = window.AWS_ACCESS_KEY_ID;
-        const secretAccessKey = window.AWS_SECRET_ACCESS_KEY;
-        console.log(region,accessKeyId,secretAccessKey);
-
-        // Configure the S3 client using the retrieved values
-        var s3Client = new AWS.S3({
-            region: region,
-            credentials: {
-                accessKeyId: accessKeyId,
-                secretAccessKey: secretAccessKey
-            }
-        });
-
         // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 11);
 
