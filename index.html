@@ -75,21 +75,19 @@
     </div>
 
     <script>
-        // Importing the necessary modules and environment variables for working with S3 on Vercel
-        const { S3Client } = require('@aws-sdk/client-s3');
-        process.env.AWS_ACCESS_KEY_ID; // Access your AWS_ACCESS_KEY_ID
-        process.env.AWS_SECRET_ACCESS_KEY; // Access your AWS_SECRET_ACCESS_KEY
-        process.env.AWS_REGION; // Access your AWS_REGION
-        const s3Client = new S3Client({
-            region: process.env.AWS_REGION,
+        // Retrieving AWS credentials
+        const region = window.PUBLIC_AWS_REGION;
+        const accessKeyId = window.PUBLIC_AWS_ACCESS_KEY_ID;
+        const secretAccessKey = window.PUBLIC_AWS_SECRET_ACCESS_KEY;
+
+        // Configure the S3 client using the retrieved values
+        const s3Client = new AWS.S3({
+            region: region,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+                accessKeyId: accessKeyId,
+                secretAccessKey: secretAccessKey
             }
         });
-
-        // const { S3Client, GetSignedUrlCommand } = require('@aws-sdk/client-s3');
-
 
         function onLocationFound(e) {
             var radius = e.accuracy;
@@ -208,24 +206,27 @@
                         document.getElementById('claim-date').textContent = clmDt;
 
                         // Generate pre-signed URLs for tagPhotoPath
-                        const tagPhotoCommand = new GetSignedUrlCommand({
-                            Bucket: 'bcbbiketag', // Replace with your S3 bucket name
-                            Key: tagPhotoPath,
-                            Expires: 3600 // URL expires after 1 hour
-                        });
-                        const tagPhotoURL = await s3Client.send(tagPhotoCommand);
+                        var params = {Bucket: 'bcbbiketag', Key: tagPhotoPath};
+                        s3Client.getSignedURL('getObject', params, (err, url) => {
+                            if (err) {
+                                console.error(err); // Handle any errors
+                            } else {
+                                // The 'url' variable now contains a signed URL to access the photo
+                                document.getElementById('tag-photo').src = url; // Set the image source to the signed URL
+                            }
+                        })
 
                         // Generate pre-signed URLs for clmPhotoPath
-                        const clmPhotoCommand = new GetSignedUrlCommand({
-                            Bucket: 'bcbbiketag',
-                            Key: clmPhotoPath,
-                            Expires: 3600
-                        }); 
-                        const claimPhotoURL = await s3Client.send(clmPhotoCommand);
+                        var params = {Bucket: 'bcbbiketag', Key: clmPhotoPath};
+                        s3Client.getSignedURL('getObject', params, (err, url) => {
+                            if (err) {
+                                console.error(err); // Handle any errors
+                            } else {
+                                // The 'url' variable now contains a signed URL to access the photo
+                                document.getElementById('claim-photo').src = url; // Set the image source to the signed URL
+                            }
+                        })
 
-                        // Assign the URLs to the image elements
-                        document.getElementById('tag-photo').src = tagPhotoURL.Url;
-                        document.getElementById('claim-photo').src = claimPhotoURL.Url;
                         sidebar.show();
                     })
                     map.addLayer(markers);
