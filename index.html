@@ -210,7 +210,7 @@
 
                         // Generate pre-signed URLs for tagPhotoPath
                         var params = {Bucket: 'bcbbiketag', Key: tagPhotoPath};
-                        s3Client.getSignedURL('getObject', params, function (err, url){
+                        s3Client.getSignedUrl('getObject', params, function (err, url){
                             if (err) {
                                 console.error(err); // Handle any errors
                             } else {
@@ -221,7 +221,7 @@
 
                         // Generate pre-signed URLs for clmPhotoPath
                         var params = {Bucket: 'bcbbiketag', Key: clmPhotoPath};
-                        s3Client.getSignedURL('getObject', params, function (err, url){
+                        s3Client.getSignedUrl('getObject', params, function (err, url){
                             if (err) {
                                 console.error(err); // Handle any errors
                             } else {
