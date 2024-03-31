@@ -81,10 +81,11 @@
         const AWS = window.AWS; // Access the AWS object in the browser
 
         // Configure AWS credentials (access key and secret key)
+        // Configure AWS credentials (access key and secret key) - (Server-side recommended)
         AWS.config.update({
-        region: 'us-east-2', // Replace with your bucket's region
-        accessKeyId: 'YOUR_ACCESS_KEY_ID',
-        secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+             region: 'us-east-2', // Replace with your bucket's region
+             accessKeyId: 'YOUR_ACCESS_KEY_ID',
+             secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
         });
         
         // function for retrieving presigned URLs
