@@ -6,10 +6,11 @@ const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 imagekit.config({
   publicKey: publicKey,
   privateKey: privateKey,
-//   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT, // Optional, if using a custom endpoint
+  // urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT, // Optional, if using a custom endpoint
 });
 
-exports.handler = async (req, res) => {
+// Default Export
+export default async function handler(req, res) {
   // Rest of your function logic using imagekit with retrieved credentials
   const path = "/default-image.jpg";
   const transformation = [{ height: 300, width: 400 }];
