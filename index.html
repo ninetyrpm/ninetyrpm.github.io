@@ -75,8 +75,21 @@
     </div>
 
     <script>
-        // Creating the leaflet map, with coordinates of center of view and zoom level
-        var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 11);
+        // Importing the necessary modules and environment variables for working with S3 on Vercel
+        const { S3Client } = require('@aws-sdk/client-s3');
+        process.env.AWS_ACCESS_KEY_ID; // Access your AWS_ACCESS_KEY_ID
+        process.env.AWS_SECRET_ACCESS_KEY; // Access your AWS_SECRET_ACCESS_KEY
+        process.env.AWS_REGION; // Access your AWS_REGION
+        const s3Client = new S3Client({
+            region: process.env.AWS_REGION,
+            credentials: {
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+            }
+        });
+
+        const { S3Client, GetSignedUrlCommand } = require('@aws-sdk/client-s3');
+
 
         function onLocationFound(e) {
             var radius = e.accuracy;
@@ -160,19 +173,22 @@
                     console.error("Error parsing CSV:", results.errors);
                     return;     // Exit the function if errors occurred
                 }
-                console.log(results.data)
+                // console.log(results.data)
                 const jsonData = results.data;      // array containing parsed data objects
                 for (const location of jsonData) {
+                    // Retrieving specific data from each object in the array
                     const tagNumber = location.TagNum;
                     const name = location.Location;
                     const lat = location.Lat;
                     const lng = location.Long;
                     const tagDt = location.TagDate;
                     const clmDt = location.ClmDate;
+
+                    // Establishing path of photos within S3 bucket
                     const tagPhotoPath = 'tag-photos/' + name + '.jpg';
                     const clmPhotoPath = 'clm-photos/' + name + '.jpg';
-                    // const tagPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', tagPhotoPath);
-                    // const claimPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', clmPhotoPath);
+
+                    // Adding markers to the map based on parsed coordinates
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
@@ -182,13 +198,34 @@
                     marker.on('mouseout',function(e){
                         this.closePopup();
                     });
-                    marker.on('click',function(e){
+
+                    // Adding listener for marker click
+                    marker.on('click', async function(e){
+                        // Getting data to display in sidebar
                         document.getElementById('tag-number').textContent = tagNumber;
                         document.getElementById('location-name').textContent = name;
                         document.getElementById('tag-date').textContent = tagDt;
                         document.getElementById('claim-date').textContent = clmDt;
-                        // document.getElementById('tag-photo').src = tagPhotoURL;
-                        // document.getElementById('claim-photo').src = claimPhotoURL;
+
+                        // Generate pre-signed URLs for tagPhotoPath
+                        const tagPhotoCommand = new GetSignedUrlCommand({
+                            Bucket: 'bcbbiketag', // Replace with your S3 bucket name
+                            Key: tagPhotoPath,
+                            Expires: 3600 // URL expires after 1 hour
+                        });
+                        const tagPhotoURL = await s3Client.send(tagPhotoCommand);
+
+                        // Generate pre-signed URLs for clmPhotoPath
+                        const clmPhotoCommand = new GetSignedUrlCommand({
+                            Bucket: 'bcbbiketag',
+                            Key: clmPhotoPath,
+                            Expires: 3600
+                        }); 
+                        const claimPhotoURL = await s3Client.send(clmPhotoCommand);
+
+                        // Assign the URLs to the image elements
+                        document.getElementById('tag-photo').src = tagPhotoURL.Url;
+                        document.getElementById('claim-photo').src = claimPhotoURL.Url;
                         sidebar.show();
                     })
                     map.addLayer(markers);
