@@ -75,65 +75,6 @@
     </div>
 
     <script>
-
-        // Establishing AWS for retrieving bike tag photos
-        const AWS = window.AWS; // Access the AWS object in the browser
-
-        async function getAWSCredentials() {
-            try {
-                const response = await fetch('/getCredentials.js'); // Replace with your function URL
-                const credentials = await response.json();
-                if (!credentials.accessKeyId || !credentials.secretAccessKey) {
-                    throw new Error("Missing AWS credentials from server");
-                }
-                return credentials;
-            } catch (error) {
-                throw new Error("Failed to fetch AWS credentials: " + error.message);
-            }
-        }
-
-        async function configureAWS() {
-            const credentials = await getAWSCredentials();
-            AWS.config.update({
-                region: 'us-east-2', // Replace with your bucket's region
-                credentials: credentials
-        })};
-
-        configureAWS().then(() => {
-            console.log("AWS SDK configured successfully");
-            // Perform actions using the configured AWS SDK
-        }).catch(error => {
-            console.error(error);
-            // Handle errors during configuration
-        });
-        
-        // function for retrieving presigned URLs
-        const s3 = new AWS.S3();
-        function generatePreSignedUrl(bucketName, objectKey) {
-            const params = {
-                Bucket: bucketName,
-                Key: objectKey,
-                Expires: 3600 // URL expires in 1 hour
-            };
-
-            try {
-                const url = s3.getSignedUrl('getObject', params);
-                return url;
-            } catch (error) {
-                console.error("Error generating pre-signed URL:", error);
-                console.log('ERROR DUMBASS')
-                // Handle the error here (e.g., return a default message, log details)
-                // You can return a specific error message or object depending on your needs.
-                const params = {
-                    Bucket: bucketName,
-                    Key: 'no photo.jpg',
-                    Expires: 3600 // URL expires in 1 hour
-                };
-                const url = s3.getSignedUrl('getObject', params);
-                return { error: "Failed to generate pre-signed URL" };
-            }
-        }
-
         // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 11);
 
@@ -230,8 +171,8 @@
                     const clmDt = location.ClmDate;
                     const tagPhotoPath = 'tag-photos/' + name + '.jpg';
                     const clmPhotoPath = 'clm-photos/' + name + '.jpg';
-                    const tagPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', tagPhotoPath);
-                    const claimPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', clmPhotoPath);
+                    // const tagPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', tagPhotoPath);
+                    // const claimPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', clmPhotoPath);
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
@@ -246,8 +187,8 @@
                         document.getElementById('location-name').textContent = name;
                         document.getElementById('tag-date').textContent = tagDt;
                         document.getElementById('claim-date').textContent = clmDt;
-                        document.getElementById('tag-photo').src = tagPhotoURL;
-                        document.getElementById('claim-photo').src = claimPhotoURL;
+                        // document.getElementById('tag-photo').src = tagPhotoURL;
+                        // document.getElementById('claim-photo').src = claimPhotoURL;
                         sidebar.show();
                     })
                     map.addLayer(markers);
