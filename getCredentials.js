@@ -1,20 +1,29 @@
-const { VercelRequest, VercelResponse } = require('@vercel/node');
+const AWS = require('aws-sdk');
 
-export default async function (req: VercelRequest, res: VercelResponse) {
-  try {
-    const accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
-    const secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+exports.handler = async (event, context) => {
+  // Retrieve AWS credentials from Vercel environment variables
+  const accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
 
-    // Implement any additional authentication/authorization logic here
-
-    if (!accessKeyId || !secretAccessKey) {
-      throw new Error("Missing AWS credentials in environment variables");
-    }
-
-    const credentials = { accessKeyId, secretAccessKey };
-    res.status(200).json(credentials);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Failed to retrieve credentials");
+  // Validate if credentials are present
+  if (!accessKeyId || !secretAccessKey) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Missing AWS credentials in environment variables' }),
+    };
   }
-}
+
+  // Configure AWS SDK with retrieved credentials
+  AWS.config.update({
+    accessKeyId,
+    secretAccessKey,
+  });
+
+  // You can optionally perform additional logic here, 
+  // such as retrieving specific data from AWS services
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Successfully retrieved AWS credentials' }),
+  };
+};
