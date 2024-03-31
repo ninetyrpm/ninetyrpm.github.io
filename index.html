@@ -40,10 +40,10 @@
     <script src="leaflet.markercluster-src.js"></script>
 
     <!-- CDN for AWS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
         integrity="sha512-yC0GYHCRUEkpVrS/HRpJc2vi6sNFExGuoJkRQJHH9xJnaBrDcD+fyMNRPsdeBBpR+sxcd67XMYiigF79kVW5AQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script> -->
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script>
 
 
     <style>
@@ -81,7 +81,7 @@
         const secretAccessKey = window.PUBLIC_AWS_SECRET_ACCESS_KEY;
 
         // Configure the S3 client using the retrieved values
-        const s3Client = new AWS.S3({
+        var s3Client = new AWS.S3({
             region: region,
             credentials: {
                 accessKeyId: accessKeyId,
@@ -201,7 +201,7 @@
                     });
 
                     // Adding listener for marker click
-                    marker.on('click', async function(e){
+                    marker.on('click', function(e){
                         // Getting data to display in sidebar
                         document.getElementById('tag-number').textContent = tagNumber;
                         document.getElementById('location-name').textContent = name;
