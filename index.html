@@ -79,10 +79,9 @@
         // Establishing AWS for retrieving bike tag photos
         const AWS = window.AWS; // Access the AWS object in the browser
 
-        // Function to retrieve credentials from environment variables
         async function getAWSCredentials() {
             try {
-                const response = await fetch('/api/credentials'); // Replace with your server API endpoint
+                const response = await fetch('/getCredentials.js'); // Replace with your function URL
                 const credentials = await response.json();
                 if (!credentials.accessKeyId || !credentials.secretAccessKey) {
                     throw new Error("Missing AWS credentials from server");
@@ -93,11 +92,19 @@
             }
         }
 
-        // Configure AWS credentials with retrieved credentials
-        const credentials = getAWSCredentials();
-        AWS.config.update({
-             region: 'us-east-2', // Replace with your bucket's region
-             credentials: credentials
+        async function configureAWS() {
+            const credentials = await getAWSCredentials();
+            AWS.config.update({
+                region: 'us-east-2', // Replace with your bucket's region
+                credentials: credentials
+        })};
+
+        configureAWS().then(() => {
+            console.log("AWS SDK configured successfully");
+            // Perform actions using the configured AWS SDK
+        }).catch(error => {
+            console.error(error);
+            // Handle errors during configuration
         });
         
         // function for retrieving presigned URLs
