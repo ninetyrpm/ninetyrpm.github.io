@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "imagekit": "^5.0.0"
+    "imagekit": "^5.0.0",
+    "imagekit-javascript": "^3.0.0"
   }
 }
