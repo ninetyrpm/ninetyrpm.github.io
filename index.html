@@ -189,28 +189,6 @@
                         document.getElementById('tag-date').textContent = tagDt;
                         document.getElementById('claim-date').textContent = clmDt;
 
-                        // Generate pre-signed URLs for tagPhotoPath
-                        var params = {Bucket: 'bcbbiketag', Key: tagPhotoPath};
-                        s3Client.getSignedUrl('getObject', params, function (err, url){
-                            if (err) {
-                                console.error(err); // Handle any errors
-                            } else {
-                                // The 'url' variable now contains a signed URL to access the photo
-                                document.getElementById('tag-photo').src = url; // Set the image source to the signed URL
-                            }
-                        })
-
-                        // Generate pre-signed URLs for clmPhotoPath
-                        var params = {Bucket: 'bcbbiketag', Key: clmPhotoPath};
-                        s3Client.getSignedUrl('getObject', params, function (err, url){
-                            if (err) {
-                                console.error(err); // Handle any errors
-                            } else {
-                                // The 'url' variable now contains a signed URL to access the photo
-                                document.getElementById('claim-photo').src = url; // Set the image source to the signed URL
-                            }
-                        })
-
                         sidebar.show();
                     })
                     map.addLayer(markers);
