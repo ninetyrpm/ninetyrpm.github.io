@@ -40,10 +40,10 @@
     <script src="leaflet.markercluster-src.js"></script>
 
     <!-- CDN for AWS -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1589.0/aws-sdk.min.js"
         integrity="sha512-yC0GYHCRUEkpVrS/HRpJc2vi6sNFExGuoJkRQJHH9xJnaBrDcD+fyMNRPsdeBBpR+sxcd67XMYiigF79kVW5AQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://sdk.amazonaws.com/js/latest/aws-sdk.min.js"></script> -->
 
 
     <style>
@@ -210,7 +210,7 @@
 
                         // Generate pre-signed URLs for tagPhotoPath
                         var params = {Bucket: 'bcbbiketag', Key: tagPhotoPath};
-                        s3Client.getSignedURL('getObject', params, (err, url) => {
+                        s3Client.getSignedURL('getObject', params, function (err, url) => {
                             if (err) {
                                 console.error(err); // Handle any errors
                             } else {
@@ -221,7 +221,7 @@
 
                         // Generate pre-signed URLs for clmPhotoPath
                         var params = {Bucket: 'bcbbiketag', Key: clmPhotoPath};
-                        s3Client.getSignedURL('getObject', params, (err, url) => {
+                        s3Client.getSignedURL('getObject', params, function (err, url) => {
                             if (err) {
                                 console.error(err); // Handle any errors
                             } else {
