@@ -72,6 +72,43 @@
     </div>
 
     <script>
+
+        // Establishing AWS for retrieving bike tag photos
+        const AWS = require('aws-sdk');
+
+        // Configure AWS credentials (access key and secret key)
+        AWS.config.update({
+        region: 'us-east-2', // Replace with your bucket's region
+        accessKeyId: 'YOUR_ACCESS_KEY_ID',
+        secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+        });
+        
+        // function for retrieving presigned URLs
+        const s3 = new AWS.S3();
+        function generatePreSignedUrl(bucketName, objectKey) {
+            const params = {
+                Bucket: bucketName,
+                Key: objectKey,
+                Expires: 3600 // URL expires in 1 hour
+            };
+
+            try {
+                const url = s3.getSignedUrl('getObject', params);
+                return url;
+            } catch (error) {
+                console.error("Error generating pre-signed URL:", error);
+                // Handle the error here (e.g., return a default message, log details)
+                // You can return a specific error message or object depending on your needs.
+                const params = {
+                    Bucket: bucketName,
+                    Key: 'no photo.jpg',
+                    Expires: 3600 // URL expires in 1 hour
+                };
+                const url = s3.getSignedUrl('getObject', params);
+                return { error: "Failed to generate pre-signed URL" };
+            }
+        }
+
         // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 11);
 
@@ -165,10 +202,11 @@
                     const lat = location.Lat;
                     const lng = location.Long;
                     const tagDt = location.TagDate;
-                    const clmDt = location.ClmDate
-                    const tagPhotoURL = location.tagURL;
-                    const claimPhotoURL = location.claimURL;
-                    // console.log(lat, ",", lng)
+                    const clmDt = location.ClmDate;
+                    const tagPhotoPath = 'tag-photos/' + name + '.jpg';
+                    const clmPhotoPath = 'clm-photos/' + name + '.jpg';
+                    const tagPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', tagPhotoPath);
+                    const claimPhotoURL = generatePreSignedUrl('biketagbcb.s3.us-east-2', clmPhotoPath);
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
