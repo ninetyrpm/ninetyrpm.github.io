@@ -21,7 +21,7 @@ var imagekit = new ImageKit({
 // });
 
 // Default Export
-async function handler(req, res, imagePath) {
+async function (req, res, imagePath) {
   const path = imagePath;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
