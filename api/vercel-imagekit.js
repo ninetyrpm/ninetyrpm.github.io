@@ -13,16 +13,10 @@ var imagekit = new ImageKit({
   publicKey : publicKey,
   privateKey : privateKey,
   urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
-  authenticationEndpoint: "/api/vercel-imagekit.js"
+  // authenticationEndpoint: "/api/vercel-imagekit.js"
 });
 
 console.log("POINT A");
-
-// imagekit.config({
-//   publicKey: publicKey,
-//   privateKey: privateKey,
-//   // urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT, // Optional, if using a custom endpoint
-// });
 
 // Default Export
 async function handler(req, res, imagePath) {
