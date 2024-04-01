@@ -1,7 +1,10 @@
+console.log("POINT #1");
 var imagekit = require('imagekit');
 
+console.log("POINT #2");
 export const runtime = 'nodejs';
 
+console.log("POINT #3");
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 
