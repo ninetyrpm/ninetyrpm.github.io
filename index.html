@@ -190,9 +190,16 @@
 
                     // Listen for marker click
                     marker.on('click', function(e){
-                        //
+                        // Retrieve the image presigned URLs
+                        getSignedImageUrl(tagPhotoPath).then(
+                            tagPhotoUrl => {
+                                document.getElementById('tag-photo').src=tagPhotoUrl;
+                            }
+                        ).catch(error => {
+                            console.error('Error fetching tag photo URL', error);
+                        });
 
-                        
+
                         // Getting data to display in sidebar
                         document.getElementById('tag-number').textContent = tagNumber;
                         document.getElementById('location-name').textContent = name;
