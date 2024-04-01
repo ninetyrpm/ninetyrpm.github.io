@@ -3,8 +3,6 @@ console.log("POINT 0");
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
-console.log(publicKey);
-console.log(privateKey);
 
 if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   console.error("Missing ImageKit Credentials in Environment Variables");
@@ -26,7 +24,7 @@ console.log("POINT A");
 // });
 
 // Default Export
-async function handler(req, res, imagePath) {
+async function (req, res, imagePath) {
   const path = imagePath;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
