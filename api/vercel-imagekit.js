@@ -1,4 +1,4 @@
-var ImageKit = require('imagekit');
+import ImageKit from "imagekit";
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
