@@ -12,7 +12,8 @@ if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
 var imagekit = new ImageKit({
   publicKey : publicKey,
   privateKey : privateKey,
-  urlEndpoint : "https://ik.imagekit.io/bcbbiketag"
+  urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
+  authenticationEndpoint: "http://www.yourserver.com/auth"
 });
 
 console.log("POINT A");
