@@ -11,7 +11,6 @@ async function getSignedImageUrl(imagePath) {
     });
 
     if (!response.ok) {
-      console.log("YOU GOT THIS FAR #2");
       throw new Error(`Failed to fetch signed URL: ${response.statusText}`);
 
     }
@@ -20,7 +19,6 @@ async function getSignedImageUrl(imagePath) {
     return data.imageURL;
   } catch (error) {
     console.error('Error fetching signed URL:', error);
-    console.log("YOU ENDED UP HERE :(")
     // Handle error gracefully in your application (e.g., display an error message)
     return null; // Or throw an error for further handling
   }

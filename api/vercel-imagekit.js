@@ -2,6 +2,8 @@ const ImageKit = require('imagekit');
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+console.log(publicKey);
+console.log(privateKey);
 
 if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   console.error("Missing ImageKit Credentials in Environment Variables");
@@ -13,6 +15,8 @@ var imagekit = new ImageKit({
   privateKey : privateKey,
   urlEndpoint : "https://ik.imagekit.io/bcbbiketag"
 });
+
+console.log("POINT A");
 
 // imagekit.config({
 //   publicKey: publicKey,
@@ -26,6 +30,7 @@ async function handler(req, res, imagePath) {
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
   const expireSeconds = 300;
+  console.log("POINT B");
 
   try {
     var imageURL = imagekit.url({
@@ -34,6 +39,7 @@ async function handler(req, res, imagePath) {
       signed,
       expireSeconds
     });
+    console.log("POINT C");
     res.status(200).json({ imageURL });
 
   } catch (error) {
