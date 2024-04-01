@@ -146,18 +146,20 @@
         // };
         // sidebar.addPanel(panelContent);
     
+        // Initialize papa parse to extract data from csv to json
         Papa.parse("https://raw.githubusercontent.com/ninetyrpm/ninetyrpm.github.io/main/Tags.csv", {
-            download: true,
-            skipEmptyLines: true,
-            header: true,           // csv contains a header row
+            download: true,                 // download csv from repository
+            skipEmptyLines: true,           // skip empty lines
+            header: true,                   // csv contains a header row
             complete: function(results) {
-                console.log("Papa Parse completed!")
+                // Error handling for papa parse
                 if (results.errors.length >0){
                     console.error("Error parsing CSV:", results.errors);
                     return;     // Exit the function if errors occurred
                 }
-                // console.log(results.data)
-                const jsonData = results.data;      // array containing parsed data objects
+
+                // Extract csv data to json array
+                const jsonData = results.data;
                 for (const location of jsonData) {
                     // Retrieving specific data from each object in the array
                     const tagNumber = location.TagNum;
@@ -167,7 +169,7 @@
                     const tagDt = location.TagDate;
                     const clmDt = location.ClmDate;
 
-                    // Establishing path of photos within S3 bucket
+                    // Establishing path of photos within media library
                     const tagPhotoPath = 'tag-photos/' + name + '.jpg';
                     const clmPhotoPath = 'clm-photos/' + name + '.jpg';
 
@@ -175,23 +177,32 @@
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
+
+                    // Listen for mouse hover over
                     marker.on('mouseover',function(e){
                         this.openPopup();
                     });
+
+                    // Listen for mouse hover off
                     marker.on('mouseout',function(e){
                         this.closePopup();
                     });
 
-                    // Adding listener for marker click
+                    // Listen for marker click
                     marker.on('click', function(e){
+                        //
+
+                        
                         // Getting data to display in sidebar
                         document.getElementById('tag-number').textContent = tagNumber;
                         document.getElementById('location-name').textContent = name;
                         document.getElementById('tag-date').textContent = tagDt;
                         document.getElementById('claim-date').textContent = clmDt;
-
+                        
+                        // Expand sidebar upon marker click
                         sidebar.show();
                     })
+                    // Add marker clusters to map
                     map.addLayer(markers);
                 }
             }
