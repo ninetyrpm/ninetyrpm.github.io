@@ -18,7 +18,7 @@ imagekit.config({
 });
 
 // Default Export
-export default async function handler(req, res, imagePath) {
+async function handler(req, res, imagePath) {
   const path = imagePath;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
