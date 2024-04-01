@@ -24,7 +24,7 @@ console.log("POINT A");
 // });
 
 // Default Export
-async function (req, res, imagePath) {
+async function handler(req, res, imagePath) {
   const path = imagePath;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
