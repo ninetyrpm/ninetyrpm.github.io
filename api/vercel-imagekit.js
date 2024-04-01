@@ -13,7 +13,7 @@ var imagekit = new ImageKit({
   publicKey : publicKey,
   privateKey : privateKey,
   urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
-  authenticationEndpoint: "http://www.yourserver.com/auth"
+  authenticationEndpoint: "/api/vercel-imagekit.js"
 });
 
 console.log("POINT A");
