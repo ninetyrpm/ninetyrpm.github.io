@@ -1,4 +1,5 @@
 async function getSignedImageUrl(imagePath) {
+  // Vercel function endpoint
   const endpoint = '/api/imagekit.js';
 
   try {

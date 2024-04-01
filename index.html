@@ -63,8 +63,8 @@
         <p>Tag Number: <a id="tag-number"></a></p>
         <p>Tag Date: <a id="tag-date"></a></p>
         <p>Claim Date: <a id="claim-date"></a></p>
-        <img id="tag-photo" alt="Tag Photo">
-        <img id="claim-photo" alt="Claim Photo">
+        <img id="tag-photo" src="" alt="Tag Photo">
+        <img id="claim-photo" src="" alt="Claim Photo">
     </div>
 
     <script>
@@ -170,8 +170,12 @@
                     const clmDt = location.ClmDate;
 
                     // Establishing path of photos within media library
-                    const tagPhotoPath = 'tag-photos/' + name + '.jpg';
-                    const clmPhotoPath = 'clm-photos/' + name + '.jpg';
+                    const tagPhotoPath = {
+                        path: 'tag-photos/' + name + '.jpg'
+                    };
+                    const clmPhotoPath = {
+                        path: 'clm-photos/' + name + '.jpg'
+                    };
 
                     // Adding markers to the map based on parsed coordinates
                     var marker = L.marker([lat,lng], {title: location.Location});
