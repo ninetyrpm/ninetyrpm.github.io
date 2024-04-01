@@ -1,4 +1,5 @@
 const ImageKit = require('imagekit');
+console.log("POINT 0");
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
