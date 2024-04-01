@@ -1,4 +1,4 @@
-var imagekit = require('imagekit');
+var ImageKit = require('imagekit');
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
@@ -8,7 +8,7 @@ if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   return { error: "Failed to retrieve ImageKit credentials" };
 }
 
-var imagekit = new imagekit({
+var imagekit = new ImageKit({
   publicKey : publicKey,
   privateKey : privateKey,
   urlEndpoint : "https://ik.imagekit.io/bcbbiketag"
