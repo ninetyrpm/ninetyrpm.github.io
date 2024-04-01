@@ -8,7 +8,7 @@ if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   return { error: "Failed to retrieve ImageKit credentials" };
 }
 
-var imagekit = new ImageKit({
+var imagekit = new imagekit({
   publicKey : publicKey,
   privateKey : privateKey,
   urlEndpoint : "https://ik.imagekit.io/bcbbiketag"
