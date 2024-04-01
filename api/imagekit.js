@@ -5,6 +5,14 @@ export const runtime = 'nodejs';
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 
+console.log("Public Key:", process.env.IMAGEKIT_PUBLIC_KEY);
+console.log("Private Key:", process.env.IMAGEKIT_PRIVATE_KEY);
+
+if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
+  console.error("Missing ImageKit Credentials in Environment Variables");
+  return { error: "Failed to retrieve ImageKit credentials" };
+}
+
 imagekit.config({
   publicKey: publicKey,
   privateKey: privateKey,
@@ -19,13 +27,14 @@ export default async function handler(req, res, imagePath) {
   const expireSeconds = 300;
 
   try {
-    var signedUrl = imagekit.url({
+    var imageURL = imagekit.url({
       path,
       transformation,
       signed,
       expireSeconds
     });
-    res.status(200).json({ signedUrl });
+    res.status(200).json({ imageURL });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate signed URL" });
