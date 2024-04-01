@@ -13,15 +13,19 @@ imagekit.config({
 
 // Default Export
 export default async function handler(req, res, imagePath) {
-  // Rest of your function logic using imagekit with retrieved credentials
   const path = imagePath;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
   const expireSeconds = 300;
 
   try {
-    var imageURL = imagekit.url({ path, transformation, signed, expireSeconds });
-    res.status(200).json({ imageURL });
+    var signedUrl = imagekit.url({
+      path,
+      transformation,
+      signed,
+      expireSeconds
+    });
+    res.status(200).json({ signedUrl });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate signed URL" });

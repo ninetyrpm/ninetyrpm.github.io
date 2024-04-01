@@ -170,12 +170,8 @@
                     const clmDt = location.ClmDate;
 
                     // Establishing path of photos within media library
-                    const tagPhotoPath = {
-                        path: 'tag-photos/' + name + '.jpg'
-                    };
-                    const clmPhotoPath = {
-                        path: 'clm-photos/' + name + '.jpg'
-                    };
+                    const tagPhotoPath = 'tag-photos/' + name + '.jpg';
+                    const clmPhotoPath = 'clm-photos/' + name + '.jpg';
 
                     // Adding markers to the map based on parsed coordinates
                     var marker = L.marker([lat,lng], {title: location.Location});

@@ -5,7 +5,7 @@ async function getSignedImageUrl(imagePath) {
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
-      body: JSON.stringify({ imagePath }),
+      body: imagePath,
       headers: { 'Content-Type': 'application/json' },
     });
 
