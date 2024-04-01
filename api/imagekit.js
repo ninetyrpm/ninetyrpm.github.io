@@ -1,10 +1,7 @@
-var imagekit = require('imagekit');
+var imagekit = require("imagekit-javascript")
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
-
-console.log("Public Key:", process.env.IMAGEKIT_PUBLIC_KEY);
-console.log("Private Key:", process.env.IMAGEKIT_PRIVATE_KEY);
 
 if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   console.error("Missing ImageKit Credentials in Environment Variables");
