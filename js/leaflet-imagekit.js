@@ -3,7 +3,7 @@ async function getSignedImageUrl(imagePath) {
   const endpoint = '/api/imagekit.js';
 
   try {
-    console.log("YOU GOT THIS FAR #1");
+    console.log(imagePath);
     const response = await fetch(endpoint, {
       method: 'POST',
       body: imagePath,
