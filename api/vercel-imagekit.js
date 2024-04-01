@@ -1,4 +1,4 @@
-var imagekit = require("imagekit-javascript")
+var imagekit = require('imagekit');
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
@@ -8,11 +8,17 @@ if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   return { error: "Failed to retrieve ImageKit credentials" };
 }
 
-imagekit.config({
-  publicKey: publicKey,
-  privateKey: privateKey,
-  // urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT, // Optional, if using a custom endpoint
+var imagekit = new ImageKit({
+  publicKey : publicKey,
+  privateKey : privateKey,
+  urlEndpoint : "https://ik.imagekit.io/bcbbiketag"
 });
+
+// imagekit.config({
+//   publicKey: publicKey,
+//   privateKey: privateKey,
+//   // urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT, // Optional, if using a custom endpoint
+// });
 
 // Default Export
 async function handler(req, res, imagePath) {
