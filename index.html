@@ -187,10 +187,10 @@
                     // Listen for marker click
                     marker.on('click', function(e){
                         // Establishing path of photos within media library
-                        const tagPhotoPath = 'tag-photos/' + name + '.jpg';
-                        const clmPhotoPath = 'clm-photos/' + name + '.jpg';
-                        console.log(tagPhotoPath);
-                        console.log(clmPhotoPath);
+                        const tagPhotoPath = '/tag-photos/' + name + '.jpg';
+                        const clmPhotoPath = '/clm-photos/' + name + '.jpg';
+                        // console.log(tagPhotoPath);
+                        // console.log(clmPhotoPath);
 
                         // Retrieve the image presigned URLs
                         getSignedImageUrl(tagPhotoPath).then(

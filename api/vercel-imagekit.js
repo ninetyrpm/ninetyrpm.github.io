@@ -20,17 +20,19 @@ console.log("POINT A");
 // Default Export
 async function handler(req, res) {
   const { imagePath } = req.body;
-  const transformation = [{ height: 300, width: 400 }]; // Optional
-  const signed = true;
-  const expireSeconds = 300;
-  console.log("imagepath: ", imagePath);
 
   try {
     var imageURL = imagekit.url({
-      path,
-      transformation,
-      signed,
-      expireSeconds
+      imagePath,
+      queryParameters : {
+        "v" : "123"
+      },
+      transformation : [{
+        height: 300,
+        width: 400
+      }],
+      signed : true,
+      expireSeconds : 300
     });
     console.log("POINT C");
     res.status(200).json({ imageURL });
