@@ -1,5 +1,4 @@
 const ImageKit = require('imagekit');
-console.log("POINT 0");
 
 const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
@@ -24,7 +23,7 @@ async function handler(req, res, imagePath) {
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
   const expireSeconds = 300;
-  console.log("POINT B");
+  console.log("imagepath: ", imagePath);
 
   try {
     var imageURL = imagekit.url({
@@ -39,5 +38,6 @@ async function handler(req, res, imagePath) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate signed URL" });
+    console.log("POINT FAIL");
   }
 };
