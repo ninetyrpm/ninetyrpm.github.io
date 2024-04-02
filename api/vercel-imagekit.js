@@ -18,7 +18,7 @@ var imagekit = new ImageKit({
 console.log("POINT A");
 
 // Default Export
-async function handler(req, res) {
+export default async function handler(request, response) {
   const { imagePath } = req.body;
 
   try {
