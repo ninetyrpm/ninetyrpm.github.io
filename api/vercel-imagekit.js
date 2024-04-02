@@ -19,7 +19,7 @@ console.log("POINT A");
 
 // Default Export
 async function handler(req, res) {
-  const path = imagePath;
+  const { imagePath } = req.body;
   const transformation = [{ height: 300, width: 400 }]; // Optional
   const signed = true;
   const expireSeconds = 300;
