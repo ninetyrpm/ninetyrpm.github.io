@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vercel/blob": "^0.22.1",
     "imagekit": "^5.0.0",
     "imagekit-javascript": "^3.0.0"
   }
