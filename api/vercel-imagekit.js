@@ -8,14 +8,14 @@ if (!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY) {
   return { error: "Failed to retrieve ImageKit credentials" };
 }
 
-var imagekit = new ImageKit({
-  publicKey : publicKey,
-  privateKey : privateKey,
-  urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
-  // authenticationEndpoint: "/api/vercel-imagekit.js"
-});
+// var imagekit = new ImageKit({
+//   publicKey : publicKey,
+//   privateKey : privateKey,
+//   urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
+//   // authenticationEndpoint: "/api/vercel-imagekit.js"
+// });
 
-console.log("POINT A");
+// console.log("POINT A");
 
 // // Default Export
 // async function handler(req, res) {
