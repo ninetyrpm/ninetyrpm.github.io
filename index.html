@@ -200,6 +200,13 @@
                         ).catch(error => {
                             console.error('Error fetching tag photo URL', error);
                         });
+                        getSignedImageUrl(clmPhotoPath).then(
+                            clmPhotoUrl => {
+                                document.getElementById('claim-photo').src=clmPhotoUrl;
+                            }
+                        ).catch(error => {
+                            console.error('Error fetching tag photo URL', error);
+                        });
 
 
                         // Getting data to display in sidebar
