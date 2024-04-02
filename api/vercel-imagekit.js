@@ -18,11 +18,9 @@ export default async function handler(req, res) {
 
   const { imagePath } = req.body;
 
-  console.log(imagePath);
-
   try {
     var imageURL = imagekit.url({
-      imagePath,
+      path: imagePath,
       queryParameters : {
         "v" : "123"
       },
@@ -33,7 +31,7 @@ export default async function handler(req, res) {
       signed : true,
       expireSeconds : 300
     });
-    console.log(imageURL);
+        console.log(imageURL);
     res.status(200).json({ imageURL });
 
 
