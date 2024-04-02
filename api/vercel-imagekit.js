@@ -16,13 +16,11 @@ export default async function handler(req, res) {
     urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
   });
 
-  console.log("POINT A");
-
   const { imagePath } = req.body;
 
   try {
     var imageURL = imagekit.url({
-      path: "/tag-photos/Waves.jpg",
+      imagePath,
       queryParameters : {
         "v" : "123"
       },
@@ -33,12 +31,10 @@ export default async function handler(req, res) {
       signed : true,
       expireSeconds : 300
     });
-    console.log("POINT C");
     res.status(200).json({ imageURL });
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate signed URL" });
-    console.log("POINT FAIL");
   }
 };
