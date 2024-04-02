@@ -24,10 +24,10 @@ export default async function handler(req, res) {
       queryParameters : {
         "v" : "123"
       },
-      // transformation : [{
-      //   height: 300,
-      //   width: 400
-      // }],
+      transformation : [{
+        // height: 300,
+        width: 500
+      }],
       signed : true,
       expireSeconds : 300
     });
