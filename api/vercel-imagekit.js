@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       },
       transformation : [{
         // height: 300,
-        width: 500
+        width: 400
       }],
       signed : true,
       expireSeconds : 300
