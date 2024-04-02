@@ -23,7 +23,7 @@ async function handler(req, res) {
 
   try {
     var imageURL = imagekit.url({
-      imagePath,
+      path: "/tag-photos/Waves.jpg",
       queryParameters : {
         "v" : "123"
       },
