@@ -19,7 +19,7 @@ console.log("POINT A");
 
 // Default Export
 export default async function handler(request, response) {
-  const { imagePath } = req.body;
+  const { imagePath } = request.body;
 
   try {
     var imageURL = imagekit.url({
@@ -39,7 +39,7 @@ export default async function handler(request, response) {
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to generate signed URL" });
+    response.status(500).json({ error: "Failed to generate signed URL" });
     console.log("POINT FAIL");
   }
 };
