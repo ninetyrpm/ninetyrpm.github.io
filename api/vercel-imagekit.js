@@ -33,8 +33,9 @@ export default async function handler(req, res) {
       signed : true,
       expireSeconds : 300
     });
-    res.status(200).json({ imageURL });
     console.log(imageURL);
+    res.status(200).json({ imageURL });
+
 
   } catch (error) {
     console.error(error);
