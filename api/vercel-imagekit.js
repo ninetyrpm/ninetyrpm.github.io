@@ -26,7 +26,10 @@ export default async function handler(req, res) {
       },
       transformation : [{
         // height: 300,
-        width: 400
+        width: auto,
+        quality: 100,
+        progressive: true,
+        metadata: false
       }],
       signed : true,
       expireSeconds : 300
