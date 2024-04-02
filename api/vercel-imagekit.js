@@ -1,5 +1,5 @@
 // Default Export
-export default async function handler(request, response) {
+export default async function handler(req, res) {
   const ImageKit = require('imagekit');
 
   const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
@@ -18,7 +18,7 @@ export default async function handler(request, response) {
 
   console.log("POINT A");
 
-  const { imagePath } = request.body;
+  const { imagePath } = req.body;
 
   try {
     var imageURL = imagekit.url({
@@ -38,7 +38,7 @@ export default async function handler(request, response) {
 
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error: "Failed to generate signed URL" });
+    res.status(500).json({ error: "Failed to generate signed URL" });
     console.log("POINT FAIL");
   }
 };
