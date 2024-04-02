@@ -17,27 +17,27 @@ var imagekit = new ImageKit({
 
 console.log("POINT A");
 
-// // Default Export
-// async function handler(req, res, imagePath) {
-//   const path = imagePath;
-//   const transformation = [{ height: 300, width: 400 }]; // Optional
-//   const signed = true;
-//   const expireSeconds = 300;
-//   console.log("imagepath: ", imagePath);
+// Default Export
+async function handler(req, res) {
+  const path = imagePath;
+  const transformation = [{ height: 300, width: 400 }]; // Optional
+  const signed = true;
+  const expireSeconds = 300;
+  console.log("imagepath: ", imagePath);
 
-//   try {
-//     var imageURL = imagekit.url({
-//       path,
-//       transformation,
-//       signed,
-//       expireSeconds
-//     });
-//     console.log("POINT C");
-//     res.status(200).json({ imageURL });
+  try {
+    var imageURL = imagekit.url({
+      path,
+      transformation,
+      signed,
+      expireSeconds
+    });
+    console.log("POINT C");
+    res.status(200).json({ imageURL });
 
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Failed to generate signed URL" });
-//     console.log("POINT FAIL");
-//   }
-// };
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to generate signed URL" });
+    console.log("POINT FAIL");
+  }
+};
