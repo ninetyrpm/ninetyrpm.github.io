@@ -16,13 +16,13 @@ export default async function handler(req, res) {
     urlEndpoint : "https://ik.imagekit.io/bcbbiketag/",
   });
 
-  const { imagePath } = req.body;
+  imagePath = req.body;
 
   console.log(imagePath);
 
   try {
     var imageURL = imagekit.url({
-      imagePath,
+      path : imagePath,
       queryParameters : {
         "v" : "123"
       },
