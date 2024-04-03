@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="css/MarkerCluster.Default.css">
     <script src="js/leaflet.markercluster-src.js"></script>
 
+    <!--   CSS & Script for corner credits   -->
+    <script type="text/javascript" src="dist/leaflet-control-credits.js"></script>
+    <link rel="stylesheet" href="dist/leaflet-control-credits.css" />
+
     <script src="js/leaflet-imagekit.js"></script>
 
     <!-- <meta http-equiv="Accept-CH" content="Sec-CH-DPR, Sec-CH-Width"> -->
@@ -82,6 +86,15 @@
     <script>
         // Creating the leaflet map, with coordinates of center of view and zoom level
         var map = L.map('map').setView([38.25267404262653, -85.74790171243315], 11);
+
+        // Adding corner credits block to the map
+        L.controlCredits({
+            imageurl: './greeninfo.png',
+            tooltip: 'Made by GreenInfo Network',
+            width: '45px',
+            height: '45px',
+            expandcontent: 'Interactive mapping<br/>by <a href="https://www.greeninfo.org/" target="_blank">GreenInfo Network</a>',
+        }).addTo(map);
 
         // Requesting user's location and marking it on the map
         function onLocationFound(e) {
