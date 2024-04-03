@@ -135,7 +135,7 @@
         .then(data => {
             geojsonData = data;
             console.log(geojsonData); // Inspect the parsed data here
-            L.geoJSON(geojsonData);
+            L.geoJSON(geojsonData).addTo(map);
         })
         .catch(error => console.error(error));
 
