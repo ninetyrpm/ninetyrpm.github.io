@@ -165,7 +165,9 @@
                     fillColor: 'none',
                     fillOpacity: 0.0
                 }
-            }).addTo(map);
+            }).addTo(map, function(layer){
+                clipBounds = layer.getBounds();
+            );
         })
         .catch(error => console.error(error));
 
