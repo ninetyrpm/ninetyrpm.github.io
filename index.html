@@ -128,7 +128,7 @@
             ].join(" | ")
         }).addTo(map);
 
-        L.geoJSON('/geoJSON/bikeways.JSON').addTo(map);
+        L.geoJSON("https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataTransportation/MapServer/0/query?outFields=*&where=1%3D1&f=geojson").addTo(map);
 
         // Creating the sidebar for displaying tag details
         var sidebar = L.control.sidebar('sidebar', {
