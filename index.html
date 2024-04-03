@@ -128,7 +128,16 @@
             ].join(" | ")
         }).addTo(map);
 
-        L.geoJSON("https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataTransportation/MapServer/0/query?outFields=*&where=1%3D1&f=geojson").addTo(map);
+        var geojsonData;
+
+        fetch("https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataTransportation/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
+        .then(response => response.json())
+        .then(data => {
+            geojsonData = data;
+            console.log(geojsonData); // Inspect the parsed data here
+            L.geoJSON(geojsonData);
+        })
+        .catch(error => console.error(error));
 
         // Creating the sidebar for displaying tag details
         var sidebar = L.control.sidebar('sidebar', {
