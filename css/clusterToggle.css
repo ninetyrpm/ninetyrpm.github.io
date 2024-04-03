@@ -1,7 +1,7 @@
 .clusterToggle {
        
        /* from leaflet-control-layers */
-       top: 10px;
+       position: 'topright';
        border-radius: 5px;
        background: #fff;
        border: 2px solid rgba(0, 0, 0, 0.2);
