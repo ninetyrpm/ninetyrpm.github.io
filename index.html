@@ -57,6 +57,9 @@
     
     <!-- CDN for the leadlet search bar -->
     <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
+
+    <!-- Add button for toggling marker clusters -->
+    <button id="clusterToggle">Cluster Markers</button>
     
     <!-- Creating container for the sidebar, which collapsed by default -->
     <div id="sidebar" class="sidebar collapsed">
@@ -136,6 +139,17 @@
 
         // Creating marker clusters
         var markers = L.markerClusterGroup();
+
+        // Add event listener for the toggle button
+        document.getElementById('clusterToggle').addEventListener('click', function() {
+        if (map.hasLayer(markers)) {
+            map.removeLayer(markers);
+            this.textContent = 'Show Clusters';
+        } else {
+            map.addLayer(markers);
+            this.textContent = 'Hide Clusters';
+        }
+        });
 
         // Adding the radar layer to the map
         L.control.radar({}).addTo(map);
