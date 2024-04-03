@@ -41,6 +41,8 @@
     <!--   script for imagekit integration   -->
     <script src="js/leaflet-imagekit.js"></script>
 
+    <script src="js/mapFunctions.js"></script>
+
     <!-- <meta http-equiv="Accept-CH" content="Sec-CH-DPR, Sec-CH-Width"> -->
 
     <style>
@@ -96,7 +98,7 @@
             expandcontent: 'Bike Tag<br/>by <a href="https://www.instagram.com/bikecruisebrews" target="_blank">Bike.Cruise.Brews</a>',
         }).addTo(map);
 
-        // Executing the location results
+        // Placing user's location on map (if permission provided)
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
         map.locate({setView: true});
