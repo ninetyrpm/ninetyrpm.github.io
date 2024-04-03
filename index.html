@@ -190,6 +190,8 @@
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
+                    // Add marker to singleMarkers group regardless of clustering state
+                    singleMarkers.addLayer(marker);
 
                     if (map.hasLayer(markers)) { // Clustering is enabled
                         markers.addLayer(marker);
@@ -200,7 +202,7 @@
                     if (map.hasLayer(markers)) {
                         map.addLayer(markers);
                     } else {
-                    map.addLayer(singleMarkers);
+                        map.addLayer(singleMarkers);
                     }
 
                     // Listen for mouse hover over
