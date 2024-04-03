@@ -141,8 +141,8 @@
             ].join(" | ")
         }).addTo(map);
 
+        // Adding the LOJIC bikeway geoJSON to the map
         var geojsonData;
-
         fetch("https://gis.lojic.org/maps/rest/services/LojicSolutions/OpenDataTransportation/MapServer/0/query?outFields=*&where=1%3D1&f=geojson")
         .then(response => response.json())
         .then(data => {
@@ -151,6 +151,36 @@
             L.geoJSON(geojsonData).addTo(map);
         })
         .catch(error => console.error(error));
+
+        // Adding the game boundaries geoJSON to the map
+        var geojsonBoundary;
+        fetch("/geoJSON/boundary.json")
+        .then(response => response.json())
+        .then(data => {
+            geojsonBoundary = data;
+            console.log(geojsonBoundary); // Inspect the parsed data here
+            L.geoJSON(geojsonBoundary, {
+                style: {
+                    color: 'blue',
+                    fillColor: 'none',
+                    fillOpacity: 0.0
+                }).addTo(map);
+        })
+        .catch(error => console.error(error));
+
+        // // Creating a clipping mask that shrouds map area outside game boundary
+        // var clipBounds = geojsonBoundary.getBounds(); // Get polygon bounds
+        // var clipPane = L.canvasOverlay().addTo(map).bringToFront(); // Create a clipping canvas pane
+        // clipPane.getBounds = function() { return clipBounds; };
+        // var clipMask = L.featureGroup().addTo(map); // Create a feature group for the mask
+        // L.geoJSON(geojsonBoundary, {
+        //   style: {
+        //     fillOpacity: 1.0, // Make mask polygon fully opaque
+        //     fillColor: 'black', // Set mask fill color (area outside will be hidden)
+        //     fillRule: 'evenodd', // Ensures correct fill behavior within polygon
+        //   },
+        //   pane: clipPane
+        // }).addTo(clipMask);
 
         // Creating the sidebar for displaying tag details
         var sidebar = L.control.sidebar('sidebar', {
