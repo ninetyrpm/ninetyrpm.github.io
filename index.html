@@ -159,6 +159,10 @@
         .then(data => {
             geojsonBoundary = data;
             console.log(geojsonBoundary); // Inspect the parsed data here
+            
+            // Define clipBounds after geojsonBoundary is available
+            var clipBounds = geojsonBoundary.getBounds();
+            
             L.geoJSON(geojsonBoundary, {
                 style: {
                     color: 'black',
@@ -172,7 +176,6 @@
         .catch(error => console.error(error));
 
         // Creating a clipping mask that shrouds map area outside game boundary
-        var clipBounds = geojsonBoundary.getBounds(); // Get polygon bounds
         var clipPane = L.canvasOverlay().addTo(map).bringToFront(); // Create a clipping canvas pane
         clipPane.getBounds = function() { return clipBounds; };
         var clipMask = L.featureGroup().addTo(map); // Create a feature group for the mask
