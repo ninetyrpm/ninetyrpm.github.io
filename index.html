@@ -147,8 +147,8 @@
                 map.addLayer(singleMarkers);
                 this.textContent = 'Show Clusters';
             } else {
-                map.removeLayer(singleMarkers);
                 map.addLayer(markers);
+                map.removeLayer(singleMarkers);
                 this.textContent = 'Hide Clusters';
             }
         });
