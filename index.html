@@ -59,6 +59,14 @@
     <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
 
     <button id="clusterToggle">Hide Clusters</button>
+    <style>
+        #clusterToggle {
+            position: fixed; /* Fix the button to the viewport */
+            top: 10px; /* Adjust vertical position from the top */
+            right: 10px; /* Adjust horizontal position from the right */
+            z-index: 1000; /* Ensure button is above map elements */
+        }
+    </style>
     
     <!-- Creating container for the sidebar, which collapsed by default -->
     <div id="sidebar" class="sidebar collapsed">
