@@ -128,7 +128,7 @@
             ].join(" | ")
         }).addTo(map);
 
-        var bikeways = L.geoJSON('/geoJSON/bikeways.JSON').addTo(map);
+        L.geoJSON('/geoJSON/bikeways.JSON').addTo(map);
 
         // Creating the sidebar for displaying tag details
         var sidebar = L.control.sidebar('sidebar', {
