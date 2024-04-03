@@ -96,18 +96,6 @@
             expandcontent: 'Bike Tag<br/>by <a href="https://www.instagram.com/bikecruisebrews" target="_blank">Bike.Cruise.Brews</a>',
         }).addTo(map);
 
-        // Requesting user's location and marking it on the map
-        function onLocationFound(e) {
-            var radius = e.accuracy;
-            L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
-            L.circle(e.latlng, radius).addTo(map);
-        }
-        
-        // Error handling for location request
-        function onLocationError(e) {
-            alert(e.message);
-        }
-
         // Executing the location results
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
