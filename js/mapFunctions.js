@@ -25,3 +25,15 @@ function getFullMapPolygon() {
   };
   return fullMapPolygon;
 }
+
+// Requesting user's location and marking it on the map
+function onLocationFound(e) {
+    var radius = e.accuracy;
+    L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+// Error handling for location request
+function onLocationError(e) {
+    alert(e.message);
+}
