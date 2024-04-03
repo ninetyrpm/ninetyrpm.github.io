@@ -139,6 +139,7 @@
 
         // Creating marker clusters
         var markers = L.markerClusterGroup();
+        var singleMarkers = L.featureGroup();
 
         // Add event listener for the toggle button
         document.getElementById('clusterToggle').addEventListener('click', function() {
@@ -189,6 +190,18 @@
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
+
+                    if (map.hasLayer(markers)) { // Clustering is enabled
+                        markers.addLayer(marker);
+                    } else { // Clustering is disabled
+                        singleMarkers.addLayer(marker);
+                    }
+
+                    if (map.hasLayer(markers)) {
+                        map.addLayer(markers);
+                    } else {
+                    map.addLayer(singleMarkers);
+                    }
 
                     // Listen for mouse hover over
                     marker.on('mouseover',function(e){
