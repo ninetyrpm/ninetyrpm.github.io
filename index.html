@@ -58,8 +58,7 @@
     <!-- CDN for the leadlet search bar -->
     <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
 
-    <!-- Add button for toggling marker clusters -->
-    <button id="clusterToggle">Cluster Markers</button>
+    <button id="clusterToggle">Hide Clusters</button>
     
     <!-- Creating container for the sidebar, which collapsed by default -->
     <div id="sidebar" class="sidebar collapsed">
@@ -139,21 +138,21 @@
 
         // Creating marker clusters
         var markers = L.markerClusterGroup();
+        map.addLayer(markers);
         var singleMarkers = L.featureGroup();
 
-        // Add event listener for the toggle button
         document.getElementById('clusterToggle').addEventListener('click', function() {
-            map.eachLayer(function(layer) {
-                map.removeLayer(layer);
-            });
             if (map.hasLayer(markers)) {
                 map.removeLayer(markers);
+                map.addLayer(singleMarkers);
                 this.textContent = 'Show Clusters';
             } else {
+                map.removeLayer(singleMarkers);
                 map.addLayer(markers);
                 this.textContent = 'Hide Clusters';
             }
         });
+
 
         // Adding the radar layer to the map
         L.control.radar({}).addTo(map);
@@ -193,20 +192,7 @@
                     var marker = L.marker([lat,lng], {title: location.Location});
                     marker.bindPopup(`<b>${location.TagNum}: ${location.Location}</b>`);
                     markers.addLayer(marker);
-                    // Add marker to singleMarkers group regardless of clustering state
-                    singleMarkers.addLayer(marker);
-
-                    if (map.hasLayer(markers)) { // Clustering is enabled
-                        markers.addLayer(marker);
-                    } else { // Clustering is disabled
-                        singleMarkers.addLayer(marker);
-                    }
-
-                    if (map.hasLayer(markers)) {
-                        map.addLayer(markers);
-                    } else {
-                        map.addLayer(singleMarkers);
-                    }
+                    singleMarkers.addLayer(marker); 
 
                     // Listen for mouse hover over
                     marker.on('mouseover',function(e){
@@ -253,7 +239,7 @@
                         sidebar.show();
                     })
                     // Add marker clusters to map
-                    map.addLayer(markers);
+                    // map.addLayer(markers);
                 }
             }
         });
