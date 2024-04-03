@@ -55,7 +55,7 @@
     <img id="headerImage" src="https://i.ibb.co/PcnL2mX/fried-chicken-riding-a-bicycle.png" alt="BCB Bike Tags">
     <div id="map" style="height: 100vh; width: 100%;"></div>
     
-    <!-- CDN for the leadlet search bar -->
+    <!-- CDN for the leaflet search bar -->
     <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
 
     <button id="clusterToggle">Hide Clusters</button>
@@ -113,7 +113,8 @@
             '<a href"https://github.com/Leaflet/Leaflet.markercluster">marker cluster</a>';
 
         // Adding map tile layers with above attributions to the map
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: [
                 osmAttribution,
