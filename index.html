@@ -22,13 +22,6 @@
     <link rel="stylesheet" href="css/L.Control.Sidebar.css">
     <script src="js/L.Control.Sidebar.js"></script>
 
-    <!-- CDN for MapBox GL JS & CSS -->
-    <!-- <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> -->
-
-    <!--   CDN for leaflet pinSearch   -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.css" crossorigin="">
-
     <!--   CDN for Leaflet.markercluster   -->
     <link rel="stylesheet" href="css/MarkerCluster.css">
     <link rel="stylesheet" href="css/MarkerCluster.Default.css">
@@ -59,9 +52,6 @@
 
 <body> 
     <div id="map" style="height: 100vh; width: 100%;"></div>
-    
-    <!-- CDN for the leaflet search bar -->
-    <script src="https://unpkg.com/leaflet.pinsearch/src/Leaflet.PinSearch.js" crossorigin=""></script>
 
     <button id="clusterToggle">Hide Clusters</button>
     <style>
@@ -178,20 +168,6 @@
             position: 'left',
         });
         map.addControl(sidebar);
-
-       // Adding PinSearch component to the map
-        var searchBar = L.control.pinSearch({
-            position: 'topright',
-            placeholder: 'Search is currently broken :(',
-            buttonText: 'Search',
-            onSearch: function(query) {
-                console.log('Search query:', query);
-                // Handle the search query here
-            },
-            searchBarWidth: '200px',
-            searchBarHeight: '30px',
-            maxSearchResults: 3
-        }).addTo(map);
 
         // Creating marker clusters
         var markers = L.markerClusterGroup();
