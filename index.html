@@ -143,13 +143,16 @@
 
         // Add event listener for the toggle button
         document.getElementById('clusterToggle').addEventListener('click', function() {
-        if (map.hasLayer(markers)) {
-            map.removeLayer(markers);
-            this.textContent = 'Show Clusters';
-        } else {
-            map.addLayer(markers);
-            this.textContent = 'Hide Clusters';
-        }
+            map.eachLayer(function(layer) {
+                map.removeLayer(layer);
+            });
+            if (map.hasLayer(markers)) {
+                map.removeLayer(markers);
+                this.textContent = 'Show Clusters';
+            } else {
+                map.addLayer(markers);
+                this.textContent = 'Hide Clusters';
+            }
         });
 
         // Adding the radar layer to the map
