@@ -50,7 +50,8 @@
             height: 60px;
         }
         #clusterToggle {
-            position: 'topright';
+            position: fixed;
+            top: 100
             border-radius: 5px;
             background: #fff;
             border: 2px solid rgba(0, 0, 0, 0.2);
@@ -58,15 +59,16 @@
             display: flex;
             z-index: 1000;           
             padding: 5px;
-            height: 67.5px;
         }
     </style>
 </head>
 
 <body> 
-    <div id="map" style="height: 100vh; width: 100%;"></div>
+    <div id="map" style="height: 100vh; width: 100%;">
+        <button id="clusterToggle">Hide Clusters</button>
+    </div>
 
-    <button id="clusterToggle">Hide Clusters</button>
+
     
     <!-- Creating container for the sidebar, which collapsed by default -->
     <div id="sidebar" class="sidebar collapsed">

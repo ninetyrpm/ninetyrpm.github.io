@@ -17,14 +17,17 @@ Application now requests user's current location. Upon permission, user location
 1. Customize Marker Icons
    - Generate bicycle icon
    - Generate shadow icon
-3. Add BCB overlay
-5. Fix search bar functionality
-6. Add geometry layer to show game boundaries
-7. Consider adding Lojic datasets as layers
-9. Implement tag system to categorize markers
-10. Implement list of markers/tags
-
+- Add BCB overlay
+- Fix search bar functionality
+- Add geometry layer to show game boundaries
+- Consider adding Lojic datasets as layers
+- Implement tag system to categorize markers
+- Implement list of markers/tags
 - Consider adopting gameplay framework from https://github.com/KenEucker/biketag-vue
+- Consider adding leaderboard
 - Implement Discord bot or integration to extract bike tag data and photos automatically
 - Map toolbar, including layer toggles
-- Add storyboard page that views tags in sequential order
+- Add storyboard/gallery mode that views tags in sequential order
+- Add comments section for each tag sidebar
+- Add social media integrations
+- Ghost Rider option: upload ride and find out how close you were to the latest tag
