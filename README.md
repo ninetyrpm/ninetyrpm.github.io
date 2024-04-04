@@ -18,6 +18,7 @@ Application now requests user's current location. Upon permission, user location
    - Generate bicycle icon
    - Generate shadow icon
 - Add BCB overlay
+- Add Bike Tag Intro page
 - Fix search bar functionality
 - Add geometry layer to show game boundaries
 - Consider adding Lojic datasets as layers

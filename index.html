@@ -36,6 +36,8 @@
 
     <script src="js/mapFunctions.js"></script>
 
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+
     <link rel="stylesheet" href="css/clusterToggle.css">
 
     <!-- <meta http-equiv="Accept-CH" content="Sec-CH-DPR, Sec-CH-Width"> -->
@@ -51,8 +53,8 @@
         }
         #clusterToggle {
             position: fixed;
-            top: 4px;
-            left: 50px;
+            top: 3px;
+            left: 60px;
             border-radius: 5px;
             background: #fff;
             border: 2px solid rgba(0, 0, 0, 0.2);
@@ -67,6 +69,7 @@
 <body> 
     <div id="map" style="height: 100vh; width: 100%;">
         <button id="clusterToggle">Hide Clusters</button>
+        <script type='text/javascript'>kofiwidget2.init('Like This? Buy me a coffee?', '#29abe0', 'F1F8WHY47');kofiwidget2.draw();</script> 
     </div>
 
 
@@ -206,13 +209,14 @@
         // };
         // sidebar.addPanel(panelContent);
 
-        var shiftyB = L.icon({
-        iconUrl: 'https://ik.imagekit.io/bcbbiketag/ShiftyB.png?updatedAt=1712199571589&ik-s=9afd77324d15db5d7b8d8517bc4decc51508b219',
-        iconSize: [80, 80], // Set the image size
-        });
-        var popupContent = '<a href="https://shifty-business.com/">Shifty Business Cycleworks</a>'
-        var marker = L.marker([38.23477087187932, -85.75659680393599], {icon: shiftyB}).addTo(map);
-        marker.bindPopup(popupContent);
+        // // Add sponsor logo
+        // var shiftyB = L.icon({
+        // iconUrl: 'https://ik.imagekit.io/bcbbiketag/ShiftyB.png?updatedAt=1712199571589&ik-s=9afd77324d15db5d7b8d8517bc4decc51508b219',
+        // iconSize: [80, 80], // Set the image size
+        // });
+        // var popupContent = '<a href="https://shifty-business.com/">Shifty Business Cycleworks</a>'
+        // var marker = L.marker([38.23477087187932, -85.75659680393599], {icon: shiftyB}).addTo(map);
+        // marker.bindPopup(popupContent);
 
     
         // Initialize papa parse to extract data from csv to json
